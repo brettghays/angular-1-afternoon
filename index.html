@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <title>Angular Friends</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -7,23 +7,25 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
 
-  <body>
+  <body ng-controller="friendCtrl">
     <h1>The <strong>facebook</strong> Friend Machine</h1>
+    
 
     <div class="friends">
       <form class="form-inline searchForm" role="form">
         <div class="form-group">
-          <input class="form-control" placeholder="Search Anything About Your Friends">
+            <input ng-model="$scope.filters.name" class="form-control" placeholder="Search Name">
+            <input ng-model='$scope.filters.state'class="form-control" placeholder="Search State">
 
-          <select class="input-medium">
-            <option>Name</option>
-            <option>#Friends</option>
-            <option>City</option>
-            <option>State</option>
-            <option>Country</option>
+          <select ng-model='$scope.sorts.property'class="input-medium">
+            <option value='name'>Name</option>
+            <option value='friend_count'>#Friends</option>
+            <option value='location.city'>City</option>
+            <option value='location.state'>State</option>
+            <option value='location.country'>Country</option>
           </select>
 
-          <select class="input-medium">
+          <select ng-model='$scope.sorts.direction'class="input-medium">
             <option value="-">Descending</option>
             <option value="+">Ascending</option>
           </select>
@@ -44,11 +46,24 @@
             Friends: 1,367
           </div>
         </li>
+
+        <li class="friend" ng-repeat='friend in friends | filter: { } | orderBy: sorts.direction + sorts.property'>
+          <img src={{friend.pic_square}} alt="" class="profile-pic">
+          <h3>{{friend.name}}</h3>
+          <div class="location">
+            Location: {{friend.location.city}}, {{friend.location.state}}, {{friend.location.country}}
+          </div>
+          <div class="status">Status: {{friend.status}}</div>
+          <div class="num-friends">Friends: {{friend.friend_count}}</div>
+        </li>
       </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- your scripts here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src = 'js/app.js'></script>
+    <script src = 'js/friendCtrl.js'></script>
   </body>
 </html>
