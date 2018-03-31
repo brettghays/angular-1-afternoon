@@ -1,69 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
-  <head>
-    <title>Angular Friends</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
+<head>
+<meta charset="utf-8" />
+<title>Day 1 of Angular</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-  <body ng-controller="friendCtrl">
-    <h1>The <strong>facebook</strong> Friend Machine</h1>
-    
+<body ng-controller="mainCtrl">
+<h1>{{message}}</h1>
+<p>Angular is an MVC Framework</p>
+<p>M = Model</p>
+<p>V is for View</p>
+<p>C means controller</p>  
+1. Mark a to do as done
+2. Delete a to do<ul>
+<li ng-repeat="todo in todos">
+<p>{{todo.title}}</p>
+<p>{{todo.status}}</p>
+<button ng-click="delete($index)">Delete</button>
+<button ng-click="done($index)">Completed</button>
+</li>
+</ul><input ng-model="newToDo" />
+<button ng-click="addToDo(newToDo)">Add Todo</button>
 
-    <div class="friends">
-      <form class="form-inline searchForm" role="form">
-        <div class="form-group">
-            <input ng-model="$scope.filters.name" class="form-control" placeholder="Search Name">
-            <input ng-model='$scope.filters.state'class="form-control" placeholder="Search State">
-
-          <select ng-model='$scope.sorts.property'class="input-medium">
-            <option value='name'>Name</option>
-            <option value='friend_count'>#Friends</option>
-            <option value='location.city'>City</option>
-            <option value='location.state'>State</option>
-            <option value='location.country'>Country</option>
-          </select>
-
-          <select ng-model='$scope.sorts.direction'class="input-medium">
-            <option value="-">Descending</option>
-            <option value="+">Ascending</option>
-          </select>
-        </div>
-      </form>
-
-      <ul>
-        <li class='friend'>
-          <img class="profile-pic" src='http://placebear.com/50/50.jpg'>
-          <h3>Cali Fornia</h3>
-          <div class="location">
-            Location: New Port Beach, California, United States
-          </div>
-          <div class="status">
-            Status: I hate the snow. I wish I was on the beach right now!!!
-          </div>
-          <div class="num-friends">
-            Friends: 1,367
-          </div>
-        </li>
-
-        <li class="friend" ng-repeat='friend in friends | filter: { } | orderBy: sorts.direction + sorts.property'>
-          <img src={{friend.pic_square}} alt="" class="profile-pic">
-          <h3>{{friend.name}}</h3>
-          <div class="location">
-            Location: {{friend.location.city}}, {{friend.location.state}}, {{friend.location.country}}
-          </div>
-          <div class="status">Status: {{friend.status}}</div>
-          <div class="num-friends">Friends: {{friend.friend_count}}</div>
-        </li>
-      </ul>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- your scripts here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-    <script src = 'js/app.js'></script>
-    <script src = 'js/friendCtrl.js'></script>
-  </body>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+<script src="app.js"></script>
+</body>
 </html>
